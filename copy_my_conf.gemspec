@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'copy_my_conf'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2013-01-08'
   s.summary     = "Vagrant Provisioner to copy your configuration files into vagrant box"
   s.description = "Copy your configurations easily into vagrant box"
