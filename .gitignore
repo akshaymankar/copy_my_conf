@@ -6,3 +6,6 @@
 
 #Vagrant
 .vagrant
+
+#The Gem
+*.gem

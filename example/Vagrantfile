@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-require File.dirname(__FILE__)+'/copy_my_conf'
+require 'copy_my_conf'
 
 #This is a sample vagrant file
 Vagrant::Config.run do |config|
