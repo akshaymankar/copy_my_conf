@@ -1,0 +1,8 @@
+#Swap
+*.swp
+
+#Idea
+.idea/
+
+#Vagrant
+.vagrant
