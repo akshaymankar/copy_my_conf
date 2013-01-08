@@ -4,13 +4,19 @@ module Vagrant
     class CopyMyConf < Base
 
       def prepare
-        prepare_vim if config.vim
-        prepare_git if config.git
-        prepare_ssh if config.ssh
+        @to_be_copied = []
+        config.all_true.each do |c|
+          conf = self.class.const_get(c.capitalize).new
+          @to_be_copied << conf
+          conf.prepare env[:vm].config.vm, tmp_root
+        end
       end
 
       def provision!
         channel = env[:vm].channel
+        @to_be_copied.each do |conf|
+          conf.provision channel, user_home, tmp_root
+        end
         provision_ssh(channel) if config.ssh
         provision_vim(channel) if config.vim
         provision_git(channel) if config.git
@@ -36,23 +42,9 @@ module Vagrant
         env[:vm].config.vm.share_folder("git", "#{tmp_root}/git/", "#{tmp_root}/git")
       end
 
-      def prepare_vim
-        `mkdir -p #{tmp_root}/vim`
-        ["~/.vimrc", "~/.vim"].each do |file|
-          `cp -r #{file} #{tmp_root}/vim`
-        end
-        env[:vm].config.vm.share_folder("vim", "#{tmp_root}/vim/", "#{tmp_root}/vim")
-      end
-
       def provision_git(channel)
         puts "Copying your gitconfig"
         channel.execute("cp #{tmp_root}/git/.gitconfig ~/")
-      end
-
-      def provision_vim(channel)
-        puts "Copying your vim configuratios"
-        channel.execute("rm -rf #{user_home}/.vim*")
-        channel.execute("cp -r #{tmp_root}/vim/.??* ~/")
       end
 
       def provision_ssh(channel)

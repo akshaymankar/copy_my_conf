@@ -6,6 +6,6 @@ Gem::Specification.new do |s|
   s.description = "Copy your configurations easily into vagrant box"
   s.authors     = ["Akshay Mankar"]
   s.email       = 'itsakshaymankar@gmail.com'
-  s.files       = ["lib/copy_my_conf.rb"]
+  s.files       = Dir["lib/**/*.rb"]
   s.homepage    = 'http://github.com/akshaymankar/copy_my_conf'
 end
