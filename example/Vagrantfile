@@ -8,9 +8,9 @@ Vagrant::Config.run do |config|
   config.ssh.forward_agent = true
   
   config.vm.provision Vagrant::Provisioners::CopyMyConf do |copy_conf|
-    copy_conf.ssh = false
+    copy_conf.ssh = true
     copy_conf.vim = true
-    copy_conf.git = false
+    copy_conf.git = true
     copy_conf.user_home = "/home/vagrant"
   end
 
