@@ -1,0 +1,1 @@
+require "copy_my_conf/config"
