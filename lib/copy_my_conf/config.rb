@@ -5,13 +5,28 @@ module Vagrant
         def self.all_attributes
           [:ssh, :vim, :git]
         end
-        attr_accessor *all_attributes
         attr_accessor :user_home
 
-        def all_true
-          self.class.all_attributes.collect do |attr|
-            self.send(attr) ? attr : nil
+        all_attributes.each do |attr|
+          define_method(attr) do
+            instance_variable_get_or_set(attr, CopyMyConf.const_get("#{attr.capitalize}").new)
+          end
+        end
+
+        def all_enabled_attributes
+          all_attributes.collect do |attr|
+            instance_variable_get "@#{attr}"
           end.compact
+          [@ssh, @vim, @git].compact
+        end
+
+      private
+        def all_attributes
+          self.class.all_attributes
+        end
+
+        def instance_variable_get_or_set(attr, value)
+          instance_variable_get("@#{attr}") || instance_variable_set("@#{attr}", value)
         end
       end
     end

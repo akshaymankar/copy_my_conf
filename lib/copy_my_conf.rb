@@ -9,8 +9,7 @@ module Vagrant
 
       def prepare
         @to_be_copied = []
-        config.all_true.each do |c|
-          conf = self.class.const_get(c.capitalize).new
+        config.all_enabled_attributes.each do |conf|
           @to_be_copied << conf
           conf.prepare env[:vm].config.vm, tmp_root
         end

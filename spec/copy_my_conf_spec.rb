@@ -18,14 +18,14 @@ module Vagrant
       end
 
       it "should prepare provisioning process" do
-        @config.should_receive(:all_true).and_return([:vim])
+        @config.should_receive(:all_enabled_attributes).and_return([CopyMyConf::Vim.new])
         CopyMyConf::Vim.any_instance.should_receive(:prepare).with(@mock_vm, anything)
 
         CopyMyConf.new.prepare
       end
 
       it "should provision the vm" do
-        @config.stub(:all_true).and_return([:vim])
+        @config.stub(:all_enabled_attributes).and_return([CopyMyConf::Vim.new])
         copy_my_conf = CopyMyConf.new
 
         CopyMyConf::Vim.any_instance.stub(:prepare)

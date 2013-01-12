@@ -5,11 +5,11 @@ module Vagrant::Provisioners
       it "should list all the true attributes" do
         config = Config.new
 
-        config.vim = true
-        config.ssh = true
+        config.vim
+        config.ssh
 
-        all_true_attributes = config.all_true
-        all_true_attributes.should =~ [:vim, :ssh]
+        all_enabled_attributes = config.all_enabled_attributes
+        all_enabled_attributes.map(&:class) =~ [Vim, Ssh]
       end
     end
   end

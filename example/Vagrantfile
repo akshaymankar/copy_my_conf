@@ -5,12 +5,11 @@ require 'copy_my_conf'
 #This is a sample vagrant file
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
-  config.ssh.forward_agent = true
-  
+
   config.vm.provision Vagrant::Provisioners::CopyMyConf do |copy_conf|
-    copy_conf.ssh = true
-    copy_conf.vim = true
-    copy_conf.git = true
+    copy_conf.ssh
+    copy_conf.vim
+    copy_conf.git
     copy_conf.user_home = "/home/vagrant"
   end
 
