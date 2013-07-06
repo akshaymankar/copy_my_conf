@@ -9,3 +9,6 @@
 
 #The Gem
 *.gem
+
+#ctags
+tags
