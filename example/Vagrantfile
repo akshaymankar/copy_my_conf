@@ -1,19 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-require 'copy_my_conf'
-
-#This is a sample vagrant file
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
 
-  config.vm.provision Vagrant::Provisioners::CopyMyConf do |copy_conf|
-    copy_conf.ssh
+  config.vm.provision :copy_my_conf do |copy_conf|
     copy_conf.vim
     copy_conf.git
     copy_conf.user_home = "/home/vagrant"
   end
-
-  config.vm.customize ["modifyvm", :id, "--memory", 2048]
-  config.vm.customize ["modifyvm", :id, "--cpus", 4]
 end
-
