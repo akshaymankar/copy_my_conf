@@ -14,7 +14,7 @@ It is a simple 3 step process
 
 Add these lines in your vagrant file inside the `Vagrant::Config.run` block
 
-    config.vm.provision CopyMyConf do |copy_conf|
+    config.vm.provision :copy_my_conf do |copy_conf|
       copy_conf.git = true
       copy_conf.vim = true
       copy_conf.ssh = true
