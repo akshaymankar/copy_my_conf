@@ -15,9 +15,9 @@ It is a simple 3 step process
 Add these lines in your vagrant file inside the `Vagrant::Config.run` block
 
     config.vm.provision :copy_my_conf do |copy_conf|
-      copy_conf.git = true
-      copy_conf.vim = true
-      copy_conf.ssh = true
+      copy_conf.git
+      copy_conf.vim
+      copy_conf.ssh
     end
 
 Don't worry if you have any other provisioners, vagrant can work with multiple provisioners. Yay \o/  
