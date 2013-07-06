@@ -8,7 +8,7 @@ It is a simple 3 step process
 
 ### Add gem in your vagrant
 
-    $ vagrant gem install copy_my_conf
+    $ vagrant plugin install copy_my_conf
 
 ### Add provisioner in your Vagrantfile
 
