@@ -1,7 +1,7 @@
 module CopyMyConf
   class Ssh
     def prepare vm, tmp_root
-      vm.synced_folder("#{tmp_root}/ssh", "~/.ssh", :id => "ssh")
+      vm.synced_folder("#{ENV['HOME']}/.ssh", "#{tmp_root}/ssh",:id => "ssh")
     end
 
     def provision channel, user_home, tmp_root

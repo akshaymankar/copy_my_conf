@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :copy_my_conf do |copy_conf|
     copy_conf.vim
     copy_conf.git
+    copy_conf.ssh
     copy_conf.user_home = "/home/vagrant"
   end
 end
